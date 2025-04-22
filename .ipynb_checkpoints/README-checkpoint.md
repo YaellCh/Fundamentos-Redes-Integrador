@@ -1,6 +1,14 @@
 # Fundamentos-Redes-Integrador
 Este repositorio está destinado a documentar los pasos que usaremos en el proyecto integrador en la materia de Fundamentos de Redes. Contiene una guía, configuraciones y recursos útiles para facilitar el desarrollo y comprensión del proyecto.
 
+# Integrantes del Equipo
+
+- **Chávez Atanacio Yael Antonio**    - [230110032]
+- **Gómez Mejía Eduardo**                 - [230110727]
+- **Hernández Martínez Brayan**     - [230110578]
+- **Bernal Franco Lizbeth de Jesús** - [230110346]
+- **Gress Ugarte María Guadalupe** - [220110989]
+
 # Configuración del switch 
 | Ip                             | Dispositivo                        | Ip sugerida                                                                 |
 |--------------------------------|------------------------------------|------------------------------------------------------------------------------|
@@ -15,7 +23,9 @@ Este repositorio está destinado a documentar los pasos que usaremos en el proye
 
 1. Seleccionar la PC y el Switch para hacer la conexión.
    (agregar imagenes)
+![Conexión del Switch(SE) con las computadoras](Imgs/Conexion_PC_SE.png)
 
+![Topología de red](Imgs/Topologia_SE.png)
 ### Pasos para configurar:
 1. Configurar `hostname` y `banner`
 2. Configurar `password` y `secret`
@@ -24,8 +34,95 @@ Este repositorio está destinado a documentar los pasos que usaremos en el proye
 5. Configurar VLAN
 6. Configurar SSH
 
-## Configuraciones en el Router
+# Activar soporte para IPV6
+```bash
+Switch>enable
+Switch#configureterminal
+Switch(config)#sdmpreferdual-ipv4-and-ipv6default
+Switch(config)#end
+Switch#reload
+```
+Después de reiniciar, continúas con la configuración:
 
+## Comandos para configurar el Switch
+
+# Configuración básica del Switch
+```bash
+Switch>enable
+Switch#configureterminal
+Switch(config)#hostnameSE
+SE(config)#bannermotd"Welcome to the switch"
+SE(config)#enablepasswordconsola
+SE(config)#enablesecret tics
+SE(config)#lineconsole0
+SE(config-line)#passwordcisco
+SE(config-line)#login
+SE(config-line)#exit
+SE(config)#linevty015
+SE(config-line)#passwordtelnet
+SE(config-line)#login
+SE(config-line)#exit
+```
+# Configuración de VLAN 1 con IPv4 e IPv6
+```bash
+ SE(config)#interfacevlan1
+ SE(config-if)#ipaddress172.16.0.158255.255.255.224
+ SE(config-if)#ipv6address2001:db8:1:1::/64eui-64
+ SE(config-if)#ipv6addressFE80::2link-local
+ SE(config-if)#noshutdown
+ SE(config-if)#description"to admin"
+ SE(config-if)#exit
+```
+# Configuración de SSH
+```bash
+ SE(config)#ipdomain-namecisco.com
+ SE(config)#usernameAdminpasswordAdmin
+ SE(config)#cryptokeygeneratersa
+ Howmanybitsinthemodulus[512]:1024
+ SE(config)#linevty015
+ SE(config-line)#transport inputssh
+ SE(config-line)#loginlocal
+ SE(config-line)#exit
+ SE(config)#servicepassword-encryption
+```
+!(Imgs/Conf_Basic.png)
+!(Imgs/Conf_Basic2.png)
+## Configuración IPv4 en PCs
+
+| Dispositivo | IPv4 Address   | Default Gateway  |
+|-------------|----------------|------------------|
+| PC1         | 172.16.0.130   | 172.16.0.1       |
+| PC2         | 172.16.0.131   | 172.16.0.1       |
+| PC3         | 172.16.0.132   | 172.16.0.1       |
+
+## Configuración IPv6 en PCs
+
+| Dispositivo | IPv6 Address              | Link-local Address |
+|-------------|---------------------------|--------------------|
+| PC1         | 2001:db8:11::101/64       | FE80::101          |
+| PC2         | 2001:db8:11::102/64       | FE80::102          |
+| PC3         | 2001:db8:11::103/64       | FE80::103          |
+
+## Configuración en Packet Tracer y Pruebas de conectividad
+!(Imgs/Cambiar_Ip.png)
+Ingresa a la PCI, luego dirigete a Desktop y cambia las IP según las tablas de configuración IPV4 y
+IPV6 deberas repetir este mismo paso en las demas PCs.
+
+# Conexión en telnet por IPV4:
+!(Imgs/Telnet_1.png)
+
+!(Imgs/Telnet_2.png)
+
+# Conexión en telnet por IPV6:
+!(Imgs/Telnet_3.png)
+
+# Conexión SSH usando IPV4
+!(Imgs/ssh_IPV4.png)
+
+# Conexión SSH usando IPV6
+!(Imgs/ssh_IPV6.png)
+
+## Configuraciones en el Router
 ![Topología de red](Imgs/topologia.png)
 
 ### Configuración básica
