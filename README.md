@@ -22,7 +22,8 @@ Este repositorio está destinado a documentar los pasos que usaremos en el proye
 ## Configurar Switch
 
 1. Seleccionar la PC y el Switch para hacer la conexión.
-   (agregar imagenes)
+
+
 ![Conexión del Switch(SE) con las computadoras](Imgs/Conexion_PC_SE.png)
 
 ![Topología de red](Imgs/Topologia_SE.png)
@@ -37,7 +38,7 @@ Este repositorio está destinado a documentar los pasos que usaremos en el proye
 # Activar soporte para IPV6
 ```bash
 Switch>enable
-Switch#configureterminal
+Switch#configure terminal
 Switch(config)#sdmpreferdual-ipv4-and-ipv6default
 Switch(config)#end
 Switch#reload
@@ -48,44 +49,44 @@ Después de reiniciar, continúas con la configuración:
 # Configuración básica del Switch
 ```bash
 Switch>enable
-Switch#configureterminal
-Switch(config)#hostnameSE
-SE(config)#bannermotd"Welcome to the switch"
-SE(config)#enablepasswordconsola
-SE(config)#enablesecret tics
-SE(config)#lineconsole0
-SE(config-line)#passwordcisco
+Switch#configure terminal
+Switch(config)#hostname SE
+SE(config)#banner motd "Welcome to the switch"
+SE(config)#enable password consola
+SE(config)#enable secret tics
+SE(config)#line console 0
+SE(config-line)#password cisco
 SE(config-line)#login
 SE(config-line)#exit
-SE(config)#linevty015
-SE(config-line)#passwordtelnet
+SE(config)#line vty 0 15
+SE(config-line)#password telnet
 SE(config-line)#login
 SE(config-line)#exit
 ```
 # Configuración de VLAN 1 con IPv4 e IPv6
 ```bash
- SE(config)#interfacevlan1
- SE(config-if)#ipaddress172.16.0.158255.255.255.224
- SE(config-if)#ipv6address2001:db8:1:1::/64eui-64
- SE(config-if)#ipv6addressFE80::2link-local
- SE(config-if)#noshutdown
+ SE(config)#interface vlan 1
+ SE(config-if)#ip address 172.16.0.158 255.255.255.224
+ SE(config-if)#ipv6 address 2001:db8:1:1::/64eui-64
+ SE(config-if)#ipv6 address FE80::2 link-local
+ SE(config-if)#no shutdown
  SE(config-if)#description"to admin"
  SE(config-if)#exit
 ```
 # Configuración de SSH
 ```bash
- SE(config)#ipdomain-namecisco.com
- SE(config)#usernameAdminpasswordAdmin
- SE(config)#cryptokeygeneratersa
- Howmanybitsinthemodulus[512]:1024
+ SE(config)#ip domain-name cisco.com
+ SE(config)#username Admin password Admin
+ SE(config)#crypto key generate rsa
+ How many bits in the modulus [512]:1024
  SE(config)#linevty015
- SE(config-line)#transport inputssh
- SE(config-line)#loginlocal
+ SE(config-line)#transport input ssh
+ SE(config-line)#login local
  SE(config-line)#exit
- SE(config)#servicepassword-encryption
+ SE(config)#service password-encryption
 ```
-!(Imgs/Conf_Basic.png)
-!(Imgs/Conf_Basic2.png)
+![](Imgs/Conf_Basic.png)
+![](Imgs/Conf_Basic2.png)
 ## Configuración IPv4 en PCs
 
 | Dispositivo | IPv4 Address   | Default Gateway  |
@@ -103,23 +104,23 @@ SE(config-line)#exit
 | PC3         | 2001:db8:11::103/64       | FE80::103          |
 
 ## Configuración en Packet Tracer y Pruebas de conectividad
-!(Imgs/Cambiar_Ip.png)
+![](Imgs/Cambiar_Ip.png)
 Ingresa a la PCI, luego dirigete a Desktop y cambia las IP según las tablas de configuración IPV4 y
 IPV6 deberas repetir este mismo paso en las demas PCs.
 
 # Conexión en telnet por IPV4:
-!(Imgs/Telnet_1.png)
+![](Imgs/Telnet_1.png)
 
-!(Imgs/Telnet_2.png)
+![](Imgs/Telnet_2.png)
 
 # Conexión en telnet por IPV6:
-!(Imgs/Telnet_3.png)
+![](Imgs/Telnet_3.png)
 
 # Conexión SSH usando IPV4
-!(Imgs/ssh_IPV4.png)
+![](Imgs/ssh_IPV4.png)
 
 # Conexión SSH usando IPV6
-!(Imgs/ssh_IPV6.png)
+![](Imgs/ssh_IPV6.png)
 
 ## Configuraciones en el Router
 ![Topología de red](Imgs/topologia.png)
