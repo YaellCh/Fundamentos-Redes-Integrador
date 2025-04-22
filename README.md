@@ -85,8 +85,8 @@ SE(config-line)#exit
  SE(config-line)#exit
  SE(config)#service password-encryption
 ```
-![](Imgs/Conf_Basic.png)
-![](Imgs/Conf_Basic2.png)
+![1](Imgs/Conf_Basic.png)
+![2](Imgs/Conf_Basic2.png)
 ## Configuración IPv4 en PCs
 
 | Dispositivo | IPv4 Address   | Default Gateway  |
@@ -110,7 +110,6 @@ IPV6 deberas repetir este mismo paso en las demas PCs.
 
 # Conexión en telnet por IPV4:
 ![](Imgs/Telnet_1.png)
-
 ![](Imgs/Telnet_2.png)
 
 # Conexión en telnet por IPV6:
