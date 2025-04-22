@@ -86,7 +86,7 @@ SE(config-line)#exit
  SE(config)#service password-encryption
 ```
 ![1](Imgs/Conf_Basic.png)
-![2](Imgs/Conf_Basic2.png)
+![2](Imgs/conf_Basic2.png)
 ## Configuración IPv4 en PCs
 
 | Dispositivo | IPv4 Address   | Default Gateway  |
