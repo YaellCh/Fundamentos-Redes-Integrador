@@ -45,7 +45,6 @@ Switch#reload
 Después de reiniciar, continúas con la configuración:
 
 ## Comandos para configurar el Switch
-
 # Configuración básica del Switch
 ```bash
 Switch>enable
