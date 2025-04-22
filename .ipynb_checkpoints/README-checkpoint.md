@@ -25,30 +25,42 @@ Este repositorio está destinado a documentar los pasos que usaremos en el proye
 6. Configurar SSH
 
 ## Configuraciones en el Router
- (agregar imagenes)
- 
-### Topología
 
-### 1. Configuración básica del router
-
-La configuración básica incluye estos pasos:
-
-| **Acción**                                         | **Comando**                                 |
-|---------------------------------------------------|---------------------------------------------|
-| Acceso al modo privilegiado                       | `enable`                                    |
-| Entrar al modo de configuración global            | `configure terminal`                        |
-| Asignar un nombre al router (hostname)            | `hostname RE`                               |
-| Establecer contraseña para modo privilegiado      | `enable secret tics`                        |
-| Configurar contraseña para la consola             | `line console 0`<br>`password consola`<br>`login`<br>`exit` |
-| Configurar acceso remoto (VTY 0–4)                | `line vty 0 4`<br>`password cisco`<br>`login`<br>`transport input all`<br>`exit` |
-| Cifrado de contraseñas en el archivo de configuración | `service password-encryption`           |
-| Mensaje de bienvenida (banner)                    | `banner motd #Bienvenido#`                  |
+![Topología de red](Imgs/topologia.png)
 
 ### Configuración básica
 
-(imagenes y tabla)
+| Acción                                | Comando                             |
+|--------------------------------------|-------------------------------------|
+| Acceso al modo privilegiado          | `enable`                            |
+| Modo configuración global            | `configure terminal`                |
+| Asignar nombre al router             | `hostname RE`                       |
+| Cifrado de contraseñas               | `service password-encryption`       |
+| Mensaje de bienvenida                | `banner motd #Bienvenido#`          |
 
-### Configuración de interfaces
+### Configurar consola
+
+```bash
+line console 0
+password consola
+login
+exit
+```
+
+### Configurar acceso remoto (VTY 0–4)
+
+```bash
+line vty 0 4
+password cisco
+login
+transport input all
+exit
+```
+`Nota: El comando transport input ssh telnet puede no funcionar en versiones antiguas del IOS. Usar transport input all`
+
+![Configuraciones Basicas](Imgs/configuraciones_basicas.png)
+
+### Configuración de interfaces (IPv4 / IPv6)
 
 **Parámetros:**
 - IP y Máscara: `172.16.0.128 / 27` → `255.255.255.224`
@@ -58,29 +70,52 @@ La configuración básica incluye estos pasos:
 
 | Acción                                  | Comando                                                     |
 |----------------------------------------|-------------------------------------------------------------|
-| Habilitar enrutamiento IPv6            | `ipv6 unicast-routing`                                      |
-| Acceder a interfaz g0/0                | `interface g0/0`                                            |
-| Asignar dirección IPv4 y máscara       | `ip address 172.16.0.129 255.255.255.224`                   |
-| Asignar dirección IPv6 (EUI-64)        | `ipv6 address 2001:db8:1:1::/64 eui-64`                      |
-| Activar IPv6 link-local automática     | `ipv6 enable`                                               |
-| Activar interfaz                       | `no shutdown`                                               |
-| Descripción de la interfaz             | `description "to LAN E"`                                    |
+| Habilitar enrutamiento IPv6            | `ipv6 unicast-routing`                                     |
+| Acceder a la interfaz g0/0             | `interface g0/0`                                           |
+| Asignar dirección IPv4 y máscara       | `ip address 172.16.0.129 255.255.255.224`                  |
+| Asignar dirección IPv6 con EUI-64      | `ipv6 address 2001:db8:1:1::/64 eui-64`                     |
+| Activar IPv6 link-local automática     | `ipv6 enable`                                              |
+| Añadir descripción a la interfaz       | `description "to LAN E"`                                   |
+| Activar la interfaz                    | `no shutdown`                                              |
+| Salir de la configuración de interfaz  | `exit`                                                     |
 
----
+![Configuraciones de Interfaces](Imgs/configuraciones_interfaces.png)
 
-## Configuraciones finales (Hosts)
+### Configuración de los dispositivos finales (host)
 
-1. Ping desde PC1, PC2 y PC3 a:
-   - Dirección IPv4 del router: `172.16.0.129`
-   - Dirección link-local IPv6 del router: `FE80::260:3EFF:FE47:9401`
-   - Dirección global IPv6 del router: `2001:DB8:1:1:260:3EFF:FE47:9401`
+![PC1](Imgs/PC1.png)
 
-2. Verificación con comando:
-   - `show ipv6 interface g0/0`
+![PC2](Imgs/PC2.png)
+
+![PC3](Imgs/PC3.png)
+
+### Ping entre las interfaces 
+
+1. Hacer ping desde PC1, PC2 y PC3 a:
+
+- Dirección IPv4 del router: 172.16.0.129
+
+- Dirección link-local IPv6 del router: FE80::260:3EFF:FE47:9401
+
+- Dirección global IPv6 del router: 2001:DB8:1:1:260:3EFF:FE47:9401
+
+2. Verificar IPv6 con el comando:
+
+```bash
+show ipv6 interface g0/0
+```
+`Este comando muestra información detallada de la configuración IPv6 de la interfaz especificada, en este caso GigabitEthernet0/0.
+`
+![Comando](Imgs/show.png)
+
+3. Resultados
+
+![1. Ping a la dirección IPv4 del router (172.16.0.129)](Imgs/ping_ipv4.png)  
 
 
+![2. Ping a la dirección link-local IPv6 del router (FE80::260:3EFF:FE47:9401)](Imgs/ping_ipv6_link-local.png)  
 
-
+![3. Ping a la dirección global IPv6 del router (2001:DB8:1:1:260:3EFF:FE47:9401)](Imgs/ping_ipv6_global.png)  
 
 
 
