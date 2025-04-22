@@ -104,16 +104,23 @@ exit
 ```bash
 show ipv6 interface g0/0
 ```
-`Este comando muestra información detallada de la configuración IPv6 de la interfaz especificada, en este caso GigabitEthernet0/0.
+`Este comando muestra información detallada de la configuración IPv6 de la interfaz especificada, 
+en este caso GigabitEthernet0/0.
 `
+
 ![Comando](Imgs/show.png)
 
 3. Resultados
 
+- Ping a la dirección IPv4 del router 
+
 ![1. Ping a la dirección IPv4 del router (172.16.0.129)](Imgs/ping_ipv4.png)  
 
-
+- Ping a la dirección link-local IPv6 del router 
+  
 ![2. Ping a la dirección link-local IPv6 del router (FE80::260:3EFF:FE47:9401)](Imgs/ping_ipv6_link-local.png)  
+
+- Ping a la dirección global IPv6 del router 
 
 ![3. Ping a la dirección global IPv6 del router (2001:DB8:1:1:260:3EFF:FE47:9401)](Imgs/ping_ipv6_global.png)  
 
