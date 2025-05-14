@@ -8,6 +8,29 @@ Este repositorio está destinado a documentar los pasos que usaremos en el proye
 - **Hernández Martínez Brayan**     - [230110578]
 - **Bernal Franco Lizbeth de Jesús** - [230110346]
 - **Gress Ugarte María Guadalupe** - [220110989]
+ 
+ # Calculo de subred
+ 
+ ## Subneteo
+
+**Dirección IP:** `172.16.0.128/24`  
+**Máscara:** `255.255.255.0`  
+**Número de Subredes:** `2^3 = 8`  
+**Nueva máscara:** `255.255.255.224 = /27`  
+
+|                | 128 | 64 | 32 | 16 | 8 | 4 | 2 | 1 | Network ID / Broadcast | 1er Dirección / Últ. Dirección |
+|----------------|-----|----|----|----|---|---|---|---|------------------------|-------------------------------|
+| **Equipo**   | 0   | 1  | 0  | 0  | 0 | 0 | 0 | 0 | `172.16.0.128` / `172.16.0.159` | `172.16.0.129` / `172.16.0.158` |
+
+** IP asignada de los integrantes del equipo
+| ID | 128|
+| Server (Eduardo) | 129 |
+| Lizbeth | 130 |
+| Maria | 131 |
+| Brayan | 132 |
+| Yael | 133 |
+| Router | 156 |
+| Switch | 158|
 
 # Configuración del switch 
 | Ip                             | Dispositivo                        | Ip sugerida                                                                 |
