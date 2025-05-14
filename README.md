@@ -22,24 +22,25 @@ Este repositorio está destinado a documentar los pasos que usaremos en el proye
 |----------------|-----|----|----|----|---|---|---|---|------------------------|-------------------------------|
 | **Equipo**   | 0   | 1  | 0  | 0  | 0 | 0 | 0 | 0 | `172.16.0.128` / `172.16.0.159` | `172.16.0.129` / `172.16.0.158` |
 
-** IP asignada de los integrantes del equipo
-| ID | 128|
-| Server (Eduardo) | 129 |
-| Lizbeth | 130 |
-| Maria | 131 |
-| Brayan | 132 |
-| Yael | 133 |
-| Router | 156 |
-| Switch | 158|
+**IP asignada de los integrantes del equipo**
+
+| Dispositivo / Persona | IP asignada |
+|------------------------|-------------|
+| ID                     | 128         |
+| Server (Eduardo)       | 129         |
+| Lizbeth                | 130         |
+| Maria                  | 131         |
+| Brayan                 | 132         |
+| Yael                   | 133         |
+| Router                 | 156         |
+| Switch                 | 158         |
+
 
 # Configuración del switch 
 | Ip                             | Dispositivo                        | Ip sugerida                                                                 |
 |--------------------------------|------------------------------------|------------------------------------------------------------------------------|
 | 172.16.0.128 ID                | Router (RE)                        | 172.16.0.129  (Esta IP es nuestro GATEWAY)                                  |
 | 172.16.0.158 BR                | Switch (SE)                        | 172.16.0.158 (Administración (última IP útil))                              |
-| 255.255.255.224 Mask           | PC1                                | 172.16.0.130                                                                 |
-|                                | PC2                                | 172.16.0.131                                                                 |
-|                                | PC3                                | 172.16.0.132                                                                 |
 |                                |                                    | **NOTA:** A partir de la IP con terminación .130 podemos asignar dispositivos hasta la .157 |
 
 ## Configurar Switch
